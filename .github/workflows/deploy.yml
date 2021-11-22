@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - "*"
+      - "!dependabot/**"
+      - "!skipci*"
+  workflow_run:
+    workflows: ["Dependabot Trigger"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SLS_DEPRECATION_DISABLE: "*" # Turn off deprecation warnings in the pipeline
+    steps:
+      - name: set variable values
+        run: |
+          echo $SWITCHEDSECRET
+        env:
+          SWITCHEDSECRET: ${{ secrets.FAKESECRET }}
+      - run: echo ${{ github.event.ref_type }}
+      - run: echo ${{ github.event.ref }}
