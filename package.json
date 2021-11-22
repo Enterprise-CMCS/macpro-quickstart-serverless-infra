@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/CMSgov/macpro-quickstart-serverless-infra#readme",
   "dependencies": {
-    "aws-sdk": "^2.810.0"
+    "aws-sdk": "^2.814.0"
   }
 }
